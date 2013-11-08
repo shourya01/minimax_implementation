@@ -8,6 +8,10 @@ https://github.com/shourya01/minimax_implementation/blob/master/game_annoted.cpp
 Feel free to fork the repo, or push fixes and/or improvements,
 if the program interests you.*/
 //The code is fully annoted and explained to the best possible degree.
+/*NOTICE- Code is written in compliance with TurboC++ 3.0 prescribed by our 
+course. Proper modifications must be made before compiling it on a more
+modern compiler. For example, replace conio.h with stdlib.h and
+clrscr() with system("cls") */
 #include<iostream.h>
 #include<conio.h>
 //Entry point.
