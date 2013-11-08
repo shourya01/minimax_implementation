@@ -1,3 +1,7 @@
+//By Shourya Bose.
+//Uses minimax algorithm.
+//For more info, read http://www.cs.berkeley.edu/~kamil/teaching/sp03/minimax.pdf
+//No human can possibly win against it, only draws.
 #include<iostream.h>
 #include<conio.h>
 //Entry point.
