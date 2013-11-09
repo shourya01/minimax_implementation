@@ -7,11 +7,11 @@
 https://github.com/shourya01/minimax_implementation/blob/master/game_annoted.cpp 
 Feel free to fork the repo, or push fixes and/or improvements,
 if the program interests you.*/
-//The code is fully annoted and explained to the best possible degree.
 /*NOTICE- Code is written in compliance with TurboC++ 3.0 prescribed by our 
 course. Proper modifications must be made before compiling it on a more
-modern compiler. For example, replace conio.h with stdlib.h and
+modern compiler. For example, replace <conio.h> with <stdlib> and
 clrscr() with system("cls") */
+//The code is fully annoted and explained to the best possible degree.
 #include<iostream.h>
 #include<conio.h>
 //Entry point.
@@ -32,11 +32,11 @@ clrscr() with system("cls") */
 char gridChar(int i)
 {
 	//Attach board symbols to sign convention.
-	if(i==-1)
+	if(i == -1)
 		return 'X';//Human
-	else if(i==0)
+	else if(i == 0)
 		return ' ';//Vacant
-	else if(i==1)
+	else if(i == 1)
 		return 'O';//Machine
 	else
 		return 'N';//Unused, this is only to avoid warnings at build.
@@ -82,10 +82,10 @@ int minimax(int board[9], int player)
 {
 	//--------------------------------------------------------------------------------------
 	//A SHORT NOTE ON MINIMAX THEOREM.
-	//Minimax theorem is used in game theory to MINimise the MAXimum loss.
+	//Minimax theorem is used in game theory to MINImise the MAXimum loss.
 	//It builds a 'tree' of possibilities and 'prunes' the improbable branches.
-	//Here all possible arrangements of the boards are conceived as 'states'.
-	//After ever human entry, all possible future states are considered.
+	//Here all possible arrangements of the board are conceived as 'states'.
+	//After every human entry, all possible future states are considered.
 	//The one offering the maximum benefit is chosen and displayed as AI move.
 	//Benefit is judged in terms of where and how soon victory can be achieved.
 	//The place where human can achieve 'nearest' victory is blocked by computer move.
@@ -94,7 +94,7 @@ int minimax(int board[9], int player)
 	//A hypothetical match between two minimax-enabled devices always results in a draw.
 	//As extensive processing is done on every step, expect lag of a second or two.
 	//Minimax is practical in a 3x3 board, but becomes impractical on larger boards.
-	//It was proposed by John von Neumann, and is used in Bruteforce machines.
+	//It was proposed by John von Neumann, and is used in search algorithms.
 	//Similar versions can be coded where every game ends in loss of AI or a draw.
 	//--------------------------------------------------------------------------------------
 	
@@ -110,7 +110,7 @@ int minimax(int board[9], int player)
     	int i;//Counter-variable.
 	/*We will now attempt (currently) every possible move on the board. The move returning
 	maximum score (worst for opponent) takes precedence. */
-    	for(i = 0; i < 9; ++i) 
+    	for(i = 0; i < 9; i++) 
 	{
 		//Simulate all moves,
         	if(board[i] == 0) //Provided the move is legal,
@@ -135,7 +135,7 @@ void computerMove(int board[9])
     	int move = -1;//Minimum value less than 0.
     	int score = -2;//Corresponds to human player win as {0,1,2}.
     	int i;//Counter-variable.
-    	for(i = 0; i < 9; ++i) 
+    	for(i = 0; i < 9; i++) 
 	{
 		//Cycle currently allowed moves for best gain.
         	if(board[i] == 0) 
@@ -175,7 +175,8 @@ void playerMove(int board[9])
 void playGameTTT(void) 
 {
 	/* Saved as a function so that entire code can be used as
-	the part of a bigger, more extensive program. */
+	the part of a bigger, more extensive program. It'll be
+	made into a class later.*/
     	int board[9] = {0,0,0,0,0,0,0,0,0};
     	//computer squares are 1, player squares are -1. Defaults at 0.
 	cout<<"Welcome to tic-tac-toe game. You are pitted against computer AI."<<endl;
@@ -184,13 +185,17 @@ void playGameTTT(void)
     	cin>>player;
     	cout<<"\n";
 	//Validate input.
-	while(!(player==1||player==2))
+	while(! (player == 1 || player == 2) )
+	{
 		cout<<"Illegal entry. Re-enter."<<endl;
+		cin>>player;
+	}
     	unsigned turn;//Counter of the turns.
-    	for(turn = 0; turn < 9 && win(board) == 0; ++turn) 
+    	for(turn = 0; turn < 9 && win(board) == 0; turn++) 
 	{
 		//Cycle the counter through a loop.
         	if((turn+player) % 2 == 0)//Check whether move is 'even' or 'odd'.
+			draw(board);
             		computerMove(board);
         	else 
 		{
@@ -198,7 +203,6 @@ void playGameTTT(void)
             		playerMove(board);
         	}
     	}
-	//Time for the conclusions.
 	//Use final value of win(board) to conclude results of the game.
     	switch(win(board)) 
 	{
